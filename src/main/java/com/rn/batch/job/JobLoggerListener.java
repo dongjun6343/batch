@@ -23,7 +23,7 @@ public class JobLoggerListener implements JobExecutionListener {
                 jobExecution.getStatus());
 
         if (jobExecution.getStatus() == BatchStatus.FAILED) {
-            // email 발송
+            // todo FAILED시 처리 추가
             log.warn("Job is Failed");
         }
     }

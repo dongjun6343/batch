@@ -21,7 +21,7 @@ public class YogiyoScheduler {
     private final JobLauncher jobLauncher;
     private final Job yogiyoJob;
 
-    @Scheduled(cron = "0 */2 * * * ?")
+    @Scheduled(cron = "0 */10 * * * ?")
     public void yogiyoJobRun() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException,
             JobParametersInvalidException, JobRestartException {
 

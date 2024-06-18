@@ -1,3 +1,6 @@
+server:
+  port: 18095
+
 spring:
   batch:
     job:
