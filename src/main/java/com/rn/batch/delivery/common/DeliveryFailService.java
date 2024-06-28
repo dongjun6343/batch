@@ -1,4 +1,4 @@
-package com.rn.batch.delivery.yogiyo.service;
+package com.rn.batch.delivery.common;
 
 import com.rn.batch.api.code.OrgCd;
 import com.rn.batch.api.code.SvcCd;
@@ -19,10 +19,10 @@ public class DeliveryFailService {
     private final SchScrapErrHistRepository schScrapErrHistRepository;
 
     @Transactional
-    public void save(DeliveryLoginInfoResponseDto deliveryRequestDto, String errMessage, SvcCd svcCd) {
+    public void save(DeliveryLoginInfoResponseDto deliveryRequestDto, String errMessage, SvcCd svcCd, OrgCd orgCd) {
         SchScrapErrHist schScrapErrHist = SchScrapErrHist.builder()
                 .bizUnitSeq(deliveryRequestDto.getBizUnitSeq())
-                .orgCd(OrgCd.yogiyo)
+                .orgCd(orgCd)
                 .svcCd(SvcCd.M0001)
                 .bizNo(deliveryRequestDto.getCustomer().getBizNo())
                 .status(BatchStatus.FAILED)
@@ -34,6 +34,6 @@ public class DeliveryFailService {
                 .build();
         schScrapErrHistRepository.save(schScrapErrHist);
         log.warn("DeliveryFailService.save - OrgCd : {} , SvcCd : {} , errMsg : {} , bizUnitSeq : {} ",
-                OrgCd.yogiyo, svcCd, errMessage, deliveryRequestDto.getBizUnitSeq());
+                orgCd, svcCd, errMessage, deliveryRequestDto.getBizUnitSeq());
     }
 }

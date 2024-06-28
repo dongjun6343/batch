@@ -17,7 +17,7 @@ import java.util.UUID;
 import java.util.concurrent.*;
 
 /**
- *
+ * 스크래핑을 할 수 있는 모듈
  */
 public class ApiScraper {
     public static final String TIME_OUT_MINUTES = "20";

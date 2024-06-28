@@ -1,4 +1,4 @@
-package com.rn.batch.job;
+package com.rn.batch.delivery.common;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.BatchStatus;

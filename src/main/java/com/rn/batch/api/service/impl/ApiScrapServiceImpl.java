@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Service
 @Transactional(readOnly = true)
-@Profile("!local")
+//@Profile("!local")
 public class ApiScrapServiceImpl implements ApiScrapService {
     @Override
     public <T> T requestScrapData(Object requestDto, Class<T> responseType) {

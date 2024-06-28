@@ -1,5 +1,6 @@
-package com.rn.batch.job;
+package com.rn.batch.delivery.cpeats.job;
 
+import com.rn.batch.delivery.common.JobLoggerListener;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
@@ -15,13 +16,13 @@ import org.springframework.transaction.PlatformTransactionManager;
 @Slf4j
 @Configuration
 @RequiredArgsConstructor
-public class YogiyoBatchConfig {
+public class CpeatsBatchConfig {
 
-    private final YogiyoApiTasklet yogiyoApiTasklet;
+    private final CpeatsTasklet cpeatsTasklet;
 
     @Bean
-    public Job yogiyoJob(JobRepository jobRepository, Step jobListenerStep) {
-        return new JobBuilder("yogiyoJob", jobRepository)
+    public Job cpeatsJob(JobRepository jobRepository, Step jobListenerStep) {
+        return new JobBuilder("cpeatsJob", jobRepository)
                 .incrementer(new RunIdIncrementer())
                 .start(jobListenerStep)
                 .listener(new JobLoggerListener())
@@ -31,7 +32,7 @@ public class YogiyoBatchConfig {
     @Bean
     public Step jobListenerStep(JobRepository jobRepository, PlatformTransactionManager platformTransactionManager) {
         return new StepBuilder("jobListenerStep", jobRepository)
-                .tasklet(yogiyoApiTasklet, platformTransactionManager)
+                .tasklet(cpeatsTasklet, platformTransactionManager)
                 .build();
     }
 }

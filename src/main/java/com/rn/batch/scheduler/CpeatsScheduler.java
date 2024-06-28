@@ -16,16 +16,16 @@ import java.util.Collections;
 
 @Component
 @RequiredArgsConstructor
-public class YogiyoScheduler {
+public class CpeatsScheduler {
 
     private final JobLauncher jobLauncher;
-    private final Job yogiyoJob;
+    private final Job cpeatsJob;
 
 //    @Scheduled(cron = "0 */10 * * * ?")
-    public void yogiyoJobRun() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException,
+    public void cpeatsJobRun() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException,
             JobParametersInvalidException, JobRestartException {
 
         JobParameters jobParameters = new JobParameters(Collections.singletonMap("requestTime", new JobParameter(System.currentTimeMillis(), Long.class)));
-        jobLauncher.run(yogiyoJob, jobParameters);
+        jobLauncher.run(cpeatsJob, jobParameters);
     }
 }

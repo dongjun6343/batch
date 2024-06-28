@@ -1,8 +1,9 @@
-package com.rn.batch.job;
+package com.rn.batch.delivery.cpeats.job;
 
 
 import com.rn.batch.api.code.MallCd;
-import com.rn.batch.delivery.yogiyo.service.YogiyoService;
+import com.rn.batch.api.code.OrgCd;
+import com.rn.batch.delivery.common.DeliveryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.StepContribution;
@@ -14,14 +15,14 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class YogiyoApiTasklet implements Tasklet {
+public class CpeatsTasklet implements Tasklet {
 
-    private final YogiyoService yogiyoService;
+    private final DeliveryService deliveryService;
 
     @Override
-    public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-        log.info("YogiyoApiTasklet start!!!");
-        yogiyoService.vatHist(MallCd.YO);
+    public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) {
+        log.info("CpeatsTasklet start!!!");
+        deliveryService.vatHist(MallCd.CPE, OrgCd.cpeats);
         return RepeatStatus.FINISHED;
     }
 }

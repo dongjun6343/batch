@@ -1,4 +1,4 @@
-package com.rn.batch.delivery.yogiyo.service;
+package com.rn.batch.delivery.common;
 
 import com.rn.batch.api.code.MallCd;
 import com.rn.batch.api.code.OrgCd;
@@ -6,8 +6,10 @@ import com.rn.batch.api.code.SvcCd;
 import com.rn.batch.api.dto.DeliveryM0001RequestDto;
 import com.rn.batch.api.dto.DeliveryM0001ResponseDto;
 import com.rn.batch.api.scrap.ApiScrapDeliveryM000X;
+import com.rn.batch.delivery.cpeats.service.CpeatsVatService;
 import com.rn.batch.delivery.customer.dto.DeliveryLoginInfoResponseDto;
 import com.rn.batch.delivery.customer.repository.CustomerRepository;
+import com.rn.batch.delivery.yogiyo.service.YogiyoVatService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -19,18 +21,20 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class YogiyoService {
+public class DeliveryService {
 
     private final ApiScrapDeliveryM000X apiScrapDeliveryM000X;
     private final CustomerRepository customerRepository;
     private final YogiyoVatService yogiyoVatService;
+    private final CpeatsVatService cpeatsVatService;
+
     private final DeliveryFailService deliveryFailService;
 
-    public void vatHist(MallCd mallCd) {
+    public void vatHist(MallCd mallCd, OrgCd orgCd) {
 
-        List<DeliveryLoginInfoResponseDto> baedalLoginInfo = customerRepository.findDeliveryLoginInfo("", OrgCd.yogiyo);
+        List<DeliveryLoginInfoResponseDto> baedalLoginInfo = customerRepository.findDeliveryLoginInfo("", orgCd);
 
-        log.info("[{}] Scraping start!!! ", OrgCd.yogiyo);
+        log.info("[{}] Scraping start!!! ", orgCd);
         for (DeliveryLoginInfoResponseDto deliveryLoginInfoResponseDto : baedalLoginInfo) {
             DeliveryM0001RequestDto requestDto = DeliveryM0001RequestDto.builder()
                     .mallCd(mallCd)
@@ -44,9 +48,14 @@ public class YogiyoService {
 
             if ("Y".equals(m0001.getErrYn()) || "Y".equals(m0001.getOutM0001().getErrYn())) {
                 log.warn("m0001.getErrMsg : {} ", m0001.getErrMsg());
-                deliveryFailService.save(deliveryLoginInfoResponseDto, m0001.getErrMsg().isEmpty() ? m0001.getOutM0001().getErrMsg() : m0001.getErrMsg(), SvcCd.M0001);
+                deliveryFailService.save(deliveryLoginInfoResponseDto, m0001.getErrMsg().isEmpty() ? m0001.getOutM0001().getErrMsg() : m0001.getErrMsg(), SvcCd.M0001, OrgCd.yogiyo);
             } else {
-                yogiyoVatService.save(deliveryLoginInfoResponseDto, m0001);
+
+                if (OrgCd.yogiyo == orgCd) {
+                    yogiyoVatService.save(deliveryLoginInfoResponseDto, m0001);
+                } else if (OrgCd.cpeats == orgCd) {
+                    cpeatsVatService.save(deliveryLoginInfoResponseDto, m0001);
+                }
             }
         }
     }

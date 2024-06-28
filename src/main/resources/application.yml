@@ -4,8 +4,8 @@ server:
 spring:
   batch:
     job:
-      #name: ${job.name:NONE} # --job.name=0000
-      enabled: false
+      name: ${job.name:NONE} # --job.name=0000
+#      enabled: false
     jdbc:
       initialize-schema: never
   datasource:
@@ -32,3 +32,6 @@ spring:
       hibernate:
         format_sql: true
         show_sql: true
+
+  main:
+    allow-bean-definition-overriding: true
