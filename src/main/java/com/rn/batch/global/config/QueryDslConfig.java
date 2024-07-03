@@ -1,4 +1,4 @@
-package com.rn.batch.config;
+package com.rn.batch.global.config;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;

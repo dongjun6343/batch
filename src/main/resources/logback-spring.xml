@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+
+	<appender name="CONSOLE-LOCAL" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<charset>UTF-8</charset>
+			<pattern>%green(%d{yyyy-MM-dd HH:mm:ss.SSS}) %magenta([%15.15t]) %highlight(%-5level) %cyan(%40.40logger{39}.%method:%line) - %yellow(%msg%n)</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="CONSOLE-PROD" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<charset>UTF-8</charset>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%15.15t] %-5level %40.40logger{39}.%method:%line - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="LOGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>/data/apps/rnbatch/rn-delivery-batch.log</file>
+		<rollingPolicy
+				class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/data/apps/rnbatch/logs/rn-delivery-batch.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>100mb</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<maxHistory>10</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<charset>UTF-8</charset>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%15.15t] %-5level %40.40logger{39}.%method:%line - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="jdbc" level="OFF" />
+	<logger name="jdbc.sqlonly" level="INFO" />
+	<logger name="jdbc.sqltiming" level="INFO" />
+	<logger name="jdbc.audit" level="OFF" />
+	<logger name="jdbc.resultset" level="OFF" />
+	<logger name="jdbc.resultsettable" level="INFO" />
+	<logger name="jdbc.connection" level="OFF" />
+
+	<springProfile name="prod">
+		<logger name="com.readnumber" additivity="false">
+			<level value="INFO" />
+			<appender-ref ref="LOGFILE" />
+			<appender-ref ref="CONSOLE-PROD" />
+		</logger>
+
+		<root>
+			<level value="INFO" />
+			<appender-ref ref="LOGFILE" />
+		</root>
+	</springProfile>
+
+	<springProfile name="!prod">
+        <root>
+            <level value="INFO" />
+            <appender-ref ref="CONSOLE-LOCAL" />
+        </root>
+		<logger name="com.readnumber" additivity="false">
+			<level value="INFO" />
+			<appender-ref ref="CONSOLE-LOCAL" />
+		</logger>
+	</springProfile>
+</configuration>

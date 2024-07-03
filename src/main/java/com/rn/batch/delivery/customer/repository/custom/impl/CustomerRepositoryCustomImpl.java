@@ -38,7 +38,8 @@ public class CustomerRepositoryCustomImpl implements CustomerRepositoryCustom {
                         scrapOrg.id.orgCd.eq(orgCd),
                         customer.bizNo.length().eq(10),
                         scrapOrg.loginId.isNotNull(),
-                        scrapOrg.loginPw.isNotNull()
+                        scrapOrg.loginPw.isNotNull(),
+                        scrapOrg.loginPw.isNotEmpty()
                 )
                 .fetch();
     }

@@ -2,23 +2,20 @@ package com.rn.batch.delivery.yogiyo.entity;
 
 // YO_BILL
 
+import com.rn.batch.global.util.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import java.time.LocalDateTime;
 
 @Getter
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "YO_BILL")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class YogiyoBill {
+public class YogiyoBill extends BaseEntity {
 
     @EmbeddedId
     private YogiyoBillId id;
@@ -58,20 +55,6 @@ public class YogiyoBill {
 
     @Column(name = "OFFLINE_AMT")
     private Long offlineAmt;
-
-    @Column(name = "REG_USER_ID")
-    private String regUserId = "api";
-
-    @Column(name = "MOD_USER_ID")
-    private String modUserId = "api";
-
-    @CreatedDate
-    @Column(name = "REG_DATE", updatable = false)
-    private LocalDateTime regDate;
-
-    @LastModifiedDate
-    @Column(name = "MOD_DATE")
-    private LocalDateTime modDate;
 
     @Builder
     public YogiyoBill(String bizUnitSeq, String paymentDt, String sedateStartDt, String sedateEndDt, Long finAmt, Long orderAmt, Long deliveryFee, Long restaurantSave,

@@ -7,7 +7,6 @@ import com.rn.batch.delivery.customer.entity.SchScrapErrHist;
 import com.rn.batch.delivery.customer.repository.SchScrapErrHistRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.batch.core.BatchStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,15 +24,13 @@ public class DeliveryFailService {
                 .orgCd(orgCd)
                 .svcCd(SvcCd.M0001)
                 .bizNo(deliveryRequestDto.getCustomer().getBizNo())
-                .status(BatchStatus.FAILED)
+                .status("NONE")
                 .errMsg(errMessage)
                 .loginId(deliveryRequestDto.getLoginId())
                 .loginPw(deliveryRequestDto.getLoginPw())
-                .regUserId("api")
-                .modUserId("api")
                 .build();
         schScrapErrHistRepository.save(schScrapErrHist);
-        log.warn("DeliveryFailService.save - OrgCd : {} , SvcCd : {} , errMsg : {} , bizUnitSeq : {} ",
+        log.warn(" DeliveryFailService.save - OrgCd : {} , SvcCd : {} , errMsg : {} , bizUnitSeq : {} ",
                 orgCd, svcCd, errMessage, deliveryRequestDto.getBizUnitSeq());
     }
 }

@@ -21,17 +21,17 @@ public class CpeatsBatchConfig {
     private final CpeatsTasklet cpeatsTasklet;
 
     @Bean
-    public Job cpeatsJob(JobRepository jobRepository, Step jobListenerStep) {
+    public Job cpeatsJob(JobRepository jobRepository, Step jobCpeatsListenerStep) {
         return new JobBuilder("cpeatsJob", jobRepository)
                 .incrementer(new RunIdIncrementer())
-                .start(jobListenerStep)
+                .start(jobCpeatsListenerStep)
                 .listener(new JobLoggerListener())
                 .build();
     }
 
     @Bean
-    public Step jobListenerStep(JobRepository jobRepository, PlatformTransactionManager platformTransactionManager) {
-        return new StepBuilder("jobListenerStep", jobRepository)
+    public Step jobCpeatsListenerStep(JobRepository jobRepository, PlatformTransactionManager platformTransactionManager) {
+        return new StepBuilder("jobCpeatsListenerStep", jobRepository)
                 .tasklet(cpeatsTasklet, platformTransactionManager)
                 .build();
     }

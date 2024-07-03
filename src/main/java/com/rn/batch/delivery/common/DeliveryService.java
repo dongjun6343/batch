@@ -48,9 +48,8 @@ public class DeliveryService {
 
             if ("Y".equals(m0001.getErrYn()) || "Y".equals(m0001.getOutM0001().getErrYn())) {
                 log.warn("m0001.getErrMsg : {} ", m0001.getErrMsg());
-                deliveryFailService.save(deliveryLoginInfoResponseDto, m0001.getErrMsg().isEmpty() ? m0001.getOutM0001().getErrMsg() : m0001.getErrMsg(), SvcCd.M0001, OrgCd.yogiyo);
+                deliveryFailService.save(deliveryLoginInfoResponseDto, m0001.getErrMsg().isEmpty() ? m0001.getOutM0001().getErrMsg() : m0001.getErrMsg(), SvcCd.M0001, orgCd);
             } else {
-
                 if (OrgCd.yogiyo == orgCd) {
                     yogiyoVatService.save(deliveryLoginInfoResponseDto, m0001);
                 } else if (OrgCd.cpeats == orgCd) {

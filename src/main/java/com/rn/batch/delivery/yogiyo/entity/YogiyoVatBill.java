@@ -45,10 +45,10 @@ public class YogiyoVatBill {
     private Long tax = 0L;
 
     @Column(name = "REG_USER_ID")
-    private String regUserId = "api";
+    private String regUserId = "rn-batch";
 
     @Column(name = "MOD_USER_ID")
-    private String modUserId = "api";
+    private String modUserId = "rn-batch";
 
     @CreatedDate
     @Column(name = "REG_DATE", updatable = false)

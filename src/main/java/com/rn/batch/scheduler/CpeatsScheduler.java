@@ -21,7 +21,7 @@ public class CpeatsScheduler {
     private final JobLauncher jobLauncher;
     private final Job cpeatsJob;
 
-//    @Scheduled(cron = "0 */10 * * * ?")
+    @Scheduled(cron = "0 0 5,21 * * ?")
     public void cpeatsJobRun() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException,
             JobParametersInvalidException, JobRestartException {
 

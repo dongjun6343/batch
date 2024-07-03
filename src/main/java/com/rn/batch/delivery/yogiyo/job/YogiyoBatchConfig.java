@@ -21,17 +21,17 @@ public class YogiyoBatchConfig {
     private final YogiyoTasklet yogiyoTasklet;
 
     @Bean
-    public Job yogiyoJob(JobRepository jobRepository, Step jobListenerStep) {
+    public Job yogiyoJob(JobRepository jobRepository, Step jobYogiyoListenerStep) {
         return new JobBuilder("yogiyoJob", jobRepository)
                 .incrementer(new RunIdIncrementer())
-                .start(jobListenerStep)
+                .start(jobYogiyoListenerStep)
                 .listener(new JobLoggerListener())
                 .build();
     }
 
     @Bean
-    public Step jobListenerStep(JobRepository jobRepository, PlatformTransactionManager platformTransactionManager) {
-        return new StepBuilder("jobListenerStep", jobRepository)
+    public Step jobYogiyoListenerStep(JobRepository jobRepository, PlatformTransactionManager platformTransactionManager) {
+        return new StepBuilder("jobYogiyoListenerStep", jobRepository)
                 .tasklet(yogiyoTasklet, platformTransactionManager)
                 .build();
     }

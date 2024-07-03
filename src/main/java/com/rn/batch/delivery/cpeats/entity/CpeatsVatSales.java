@@ -1,23 +1,20 @@
 package com.rn.batch.delivery.cpeats.entity;
 
 
+import com.rn.batch.global.util.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import java.time.LocalDateTime;
 
 @Getter
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "CE_VAT_SALES")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class CpeatsVatSales {
+public class CpeatsVatSales extends BaseEntity {
 
     @EmbeddedId
     private CpeatsVatSalesId id;
@@ -48,20 +45,6 @@ public class CpeatsVatSales {
 
     @Column(name = "ST_DISC_REFUND")
     private Long stDiscRefund = 0L;
-
-    @Column(name = "REG_USER_ID")
-    private String regUserId = "api";
-
-    @Column(name = "MOD_USER_ID")
-    private String modUserId = "api";
-
-    @CreatedDate
-    @Column(name = "REG_DATE", updatable = false)
-    private LocalDateTime regDate;
-
-    @LastModifiedDate
-    @Column(name = "MOD_DATE")
-    private LocalDateTime modDate;
 
     @Builder
     public CpeatsVatSales(String bizUnitSeq, String orderNo, String storeId, String recognitionDate, String recogDt,
