@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -18,6 +20,13 @@ public class YogiyoVatService {
 
     @Transactional
     public void save(DeliveryLoginInfoResponseDto deliveryLoginInfoResponseDto, DeliveryM0001ResponseDto m0001) {
+
+        String bizNo = deliveryLoginInfoResponseDto.getBizUnitSeq();
+        String biz1 = bizNo.substring(0, 3);
+        String biz2 = bizNo.substring(3, 5);
+        String biz3 = bizNo.substring(5);
+        String vatBizNo = String.join("-", Arrays.asList(biz1, biz2, biz3));
+
         for (DeliveryM0001ResponseDto.VatSales vatSales : m0001.getOutM0001().getList_1()) {
             String[] calcChk = vatSales.getSalesDt().split("-");
             int num = Integer.parseInt(calcChk[1]);
@@ -25,7 +34,7 @@ public class YogiyoVatService {
 
             YogiyoVatSales yogiyoVatSales = YogiyoVatSales.builder()
                     .bizUnitSeq(deliveryLoginInfoResponseDto.getBizUnitSeq())
-                    .bizNo(deliveryLoginInfoResponseDto.getCustomer().getBizNo())
+                    .bizNo(vatBizNo)
                     .calcYear(calcChk[0])
                     .calcMonth(calcChk[1])
                     .quarter(String.valueOf(quarter))
