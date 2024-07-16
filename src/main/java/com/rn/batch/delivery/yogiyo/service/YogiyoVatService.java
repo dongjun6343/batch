@@ -21,7 +21,7 @@ public class YogiyoVatService {
     @Transactional
     public void save(DeliveryLoginInfoResponseDto deliveryLoginInfoResponseDto, DeliveryM0001ResponseDto m0001) {
 
-        String bizNo = deliveryLoginInfoResponseDto.getBizUnitSeq();
+        String bizNo = deliveryLoginInfoResponseDto.getCustomer().getBizNo();
         String biz1 = bizNo.substring(0, 3);
         String biz2 = bizNo.substring(3, 5);
         String biz3 = bizNo.substring(5);

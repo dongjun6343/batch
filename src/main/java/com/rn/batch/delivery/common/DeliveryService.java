@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
@@ -41,7 +42,7 @@ public class DeliveryService {
                     .mallCd(mallCd)
                     .userId(deliveryLoginInfoResponseDto.getLoginId())
                     .userPw(deliveryLoginInfoResponseDto.getLoginPw())
-                    .dateFrom("20240101")
+                    .dateFrom(LocalDate.now().getYear()+"0101")
                     .dateTo(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd")))
                     .bizNo(deliveryLoginInfoResponseDto.getCustomer().getBizNo())
                     .build();
