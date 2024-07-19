@@ -51,10 +51,11 @@ ci/cd 구축도 필요하다!
 ## 📌 nhn 클라우드 배치 서버 구축
 ![image](https://github.com/user-attachments/assets/efd0e40c-24ee-43f1-b1b9-42955723a2b2)
 
-## 📌 jar 프로세스 확인
 <br />
-`ps -ef | grep jar` 명령어 확인
+<br />
 
+## 📌 jar 프로세스 확인
+`ps -ef | grep jar` 명령어 확인
 <img width="1563" alt="image" src="https://github.com/user-attachments/assets/70509503-d1f1-4bc0-b88c-1483d7649837">
 
 <br />
@@ -62,9 +63,7 @@ ci/cd 구축도 필요하다!
 
 
 ## 📌 Job 관련 로그 확인
-<br />
 `tail -f rn-delivery-batch.log` 명령어 확인
-
 ![image](https://github.com/user-attachments/assets/4b5b59e8-591d-4fed-9347-e06cfab5052d)
 
 <br />
@@ -75,7 +74,7 @@ ci/cd 구축도 필요하다!
 ```bash
 1. aws서버로 이관
 2. ci/cd 구축 필요
-3. chunk 사용
+3. chunk 사용 ? 
 4. webhook을 통해서 배치 오류가 발생했을때 팀즈 알림 추가
  - 배치 오류를 개발자가 빠르게 확인하기 위함
 ```
