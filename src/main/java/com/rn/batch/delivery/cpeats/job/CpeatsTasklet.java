@@ -22,7 +22,7 @@ public class CpeatsTasklet implements Tasklet {
     @Override
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) {
         log.info("CpeatsTasklet start!!!");
-        deliveryService.vatHist(MallCd.CPE, OrgCd.cpeats);
+        deliveryService.scrapVatHist(MallCd.CPE, OrgCd.cpeats);
         return RepeatStatus.FINISHED;
     }
 }

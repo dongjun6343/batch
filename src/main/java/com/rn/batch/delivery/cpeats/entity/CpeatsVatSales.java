@@ -7,10 +7,8 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Getter
-@EntityListeners(AuditingEntityListener.class)
 @Table(name = "CE_VAT_SALES")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity

@@ -4,7 +4,6 @@ import com.rn.batch.api.scrap.ApiScraper;
 import com.rn.batch.api.scrap.ConvertUtils;
 import com.rn.batch.api.service.ApiScrapService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

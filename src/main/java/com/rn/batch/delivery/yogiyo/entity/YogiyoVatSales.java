@@ -1,25 +1,24 @@
 package com.rn.batch.delivery.yogiyo.entity;
 
-import jakarta.persistence.*;
+import com.rn.batch.global.util.BaseEntity;
+import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
-// YO_VAT_SALES
-// 요기요 VAT 매출
-
 @Getter
-@EntityListeners(AuditingEntityListener.class)
 @Table(name = "YO_VAT_SALES")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class YogiyoVatSales {
+public class YogiyoVatSales extends BaseEntity {
 
     @EmbeddedId
     private YogiyoVatSalesId id;
@@ -50,20 +49,6 @@ public class YogiyoVatSales {
 
     @Column(name = "FIGURES")
     private Long figures = 0L;
-
-    @Column(name = "REG_USER_ID")
-    private String regUserId = "rn-batch";
-
-    @Column(name = "MOD_USER_ID")
-    private String modUserId = "rn-batch";
-
-    @CreatedDate
-    @Column(name = "REG_DATE", updatable = false)
-    private LocalDateTime regDate;
-
-    @LastModifiedDate
-    @Column(name = "MOD_DATE")
-    private LocalDateTime modDate;
 
     @Builder
     public YogiyoVatSales(String bizUnitSeq, String bizNo, String calcYear, String calcMonth, String quarter, Long cnt, Long onlineCard, Long onlineHp,

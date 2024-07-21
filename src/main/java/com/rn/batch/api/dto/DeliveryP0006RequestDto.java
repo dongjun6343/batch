@@ -6,11 +6,11 @@ import lombok.Builder;
 import lombok.Data;
 
 @Data
-public class DeliveryM0001RequestDto {
+public class DeliveryP0006RequestDto {
     private String appCd = "ReadNumberApp";
     private String orgCd = "mall";
     private MallCd mallCd;
-    private DeliveryCd svcCd = DeliveryCd.M0001;
+    private DeliveryCd svcCd = DeliveryCd.P0006;
     private String userId;
     private String userPw;
     private String dateFrom;
@@ -18,18 +18,14 @@ public class DeliveryM0001RequestDto {
     private String detailYn = "N";
     private String detailListYn = "N";
     private String processYn = "N";
-    private String bizNo;
-    private String storeId;
     private String langType = "ENG";
 
     @Builder
-    public DeliveryM0001RequestDto(MallCd mallCd, String userId, String userPw, String dateFrom, String dateTo, String bizNo, String storeId) {
+    public DeliveryP0006RequestDto(MallCd mallCd, String userId, String userPw, String dateFrom, String dateTo) {
         this.mallCd = mallCd;
         this.userId = userId;
         this.userPw = userPw;
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
-        this.bizNo = bizNo;
-        this.storeId = storeId;
     }
 }

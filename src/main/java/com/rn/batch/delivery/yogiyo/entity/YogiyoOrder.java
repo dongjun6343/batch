@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
  * 요기요 주문
  * P0001 (매출내역)
  */
+@Deprecated
 @Getter
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "YO_ORDR")

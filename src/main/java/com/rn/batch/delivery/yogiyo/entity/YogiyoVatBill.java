@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 
 // YO_VAT_BILL
 // 요기요 매입
+@Deprecated
 @Getter
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "YO_VAT_BILL")

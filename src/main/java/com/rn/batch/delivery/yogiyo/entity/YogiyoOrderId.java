@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.io.Serializable;
 
+@Deprecated
 @Embeddable
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter

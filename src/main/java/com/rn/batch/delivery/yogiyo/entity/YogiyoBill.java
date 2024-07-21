@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+@Deprecated
 @Getter
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "YO_BILL")

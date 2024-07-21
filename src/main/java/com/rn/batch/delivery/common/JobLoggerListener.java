@@ -23,7 +23,7 @@ public class JobLoggerListener implements JobExecutionListener {
                 jobExecution.getStatus());
 
         if (jobExecution.getStatus() == BatchStatus.FAILED) {
-            // todo FAILED시 처리 추가
+            // todo FAILED 시 관리자가 바로 알림을 받을 수 있도록 teams webhook 추가
             log.warn("Job is Failed");
         }
     }
