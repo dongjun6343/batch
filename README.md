@@ -23,7 +23,7 @@ https://dongjun6343.github.io/2023-10-19/TIL
 ## 📌 기존 스크래핑 배치 서비스
 
 ```bash
-기존 스크래핑 배치 서비스는 java8 , Vert.x , Redis, Linux cron, PHP, Mysql로 구성되어 있다.
+기존 스크래핑 배치 서비스는 java8, Vert.x, MyBatis, Redis, Linux cron, PHP, Mysql로 구성되어 있다.
 ```
 
 <br />
