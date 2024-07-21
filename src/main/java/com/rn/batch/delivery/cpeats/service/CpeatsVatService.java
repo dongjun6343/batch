@@ -53,12 +53,12 @@ public class CpeatsVatService {
 
     @Transactional
     public void saveStoreList(DeliveryP0006ResponseDto p0006) {
-        for (DeliveryP0006ResponseDto.StoreList storeList : p0006.getOutP0006()) {
+        for (DeliveryP0006ResponseDto.Store store : p0006.getOutP0006().getStoreList()) {
             CpeatsStore cpeatsStore = CpeatsStore.builder()
-                    .bizNo(storeList.getBizNo())
-                    .storeId(storeList.getStoreId())
-                    .storeName(storeList.getStoreName())
-                    .repName(storeList.getRepName())
+                    .bizNo(store.getBizNo())
+                    .storeId(store.getStoreId())
+                    .storeName(store.getStoreName())
+                    .repName(store.getRepName())
                     .build();
             cpeatsStoreRepository.save(cpeatsStore);
         }

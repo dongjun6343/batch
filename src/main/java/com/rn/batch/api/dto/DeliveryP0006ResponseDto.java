@@ -15,11 +15,17 @@ public class DeliveryP0006ResponseDto {
 
     private String errYn;
     private String errMsg;
-    private List<StoreList> outP0006 = new ArrayList<>();
+    private StoreList outP0006;
 
     @Data
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class StoreList {
+        private List<Store> storeList = new ArrayList<>();
+    }
+
+    @Data
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public static class Store {
         private String storeName;
         private String repName;
         private String storeId;
