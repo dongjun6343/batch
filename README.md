@@ -52,10 +52,13 @@ ci/cd 구축도 필요하다!
 ![image](https://github.com/user-attachments/assets/efd0e40c-24ee-43f1-b1b9-42955723a2b2)
 
 <br />
-백그라운드에서 실행 -> 해당 내용 start.sh에 추가
-<br />
-nohup /data/apps/rnbatch/jdk-17.0.2/bin/java -Dspring.profiles.active=prod -jar rn-delivery-batch.jar &  - 운영환경에서 실행 
 
+```bash
+운영환경 & 백그라운드에서 실행
+nohup /data/apps/rnbatch/jdk-17.0.2/bin/java -Dspring.profiles.active=prod -jar rn-delivery-batch.jar &
+
+서버 실행,중단 start.sh, stop.sh에 추가
+```
 <br />
 <br />
 
