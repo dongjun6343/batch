@@ -53,9 +53,8 @@ ci/cd 구축도 필요하다!
 
 <br />
 백그라운드에서 실행 -> 해당 내용 start.sh에 추가
-`nohup /data/apps/rnbatch/jdk-17.0.2/bin/java -Dspring.profiles.active=prod -jar rn-delivery-batch.jar &`
-
-
+<br />
+`nohup /data/apps/rnbatch/jdk-17.0.2/bin/java -Dspring.profiles.active=prod -jar rn-delivery-batch.jar &`  - 운영환경에서 실행 
 <br />
 
 ## 📌 jar 프로세스 확인
