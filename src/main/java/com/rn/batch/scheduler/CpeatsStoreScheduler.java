@@ -21,8 +21,8 @@ public class CpeatsStoreScheduler {
     private final JobLauncher jobLauncher;
     private final Job cpeatsStoreJob;
 
-//    @Scheduled(cron = "0 0 1,15 * * ?")
-    @Scheduled(cron = "0 */10 * * * ?")
+    //@Scheduled(cron = "0 */10 * * * ?") 10분마다 배치 - 테스트
+    @Scheduled(cron = "0 0 1,19 * * ?")
     public void cpeatsStoreJobRun() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException,
             JobParametersInvalidException, JobRestartException {
 

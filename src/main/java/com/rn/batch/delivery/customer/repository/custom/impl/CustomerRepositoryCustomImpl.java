@@ -36,6 +36,7 @@ public class CustomerRepositoryCustomImpl implements CustomerRepositoryCustom {
                         getCustStatusCondition(custStatus),
                         scrapOrg.useYn.eq("Y"),
                         scrapOrg.id.orgCd.eq(orgCd),
+                        customer.statusDetail.eq("D"), // D : 정상
                         customer.bizNo.length().eq(10),
                         scrapOrg.loginId.isNotNull(),
                         scrapOrg.loginPw.isNotNull(),

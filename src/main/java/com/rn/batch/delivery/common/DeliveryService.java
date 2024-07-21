@@ -49,7 +49,8 @@ public class DeliveryService {
             if ("Y".equals(p0006.getErrYn())) {
                 log.warn("p0006.getErrMsg : {} ", p0006.getErrMsg());
             } else {
-                cpeatsVatService.saveStoreList(p0006);
+                log.info("p0006.saveStoreList start!! bizUnitSeq : {} ", deliveryLoginInfoResponseDto.getBizUnitSeq());
+                cpeatsVatService.saveStoreList(p0006, deliveryLoginInfoResponseDto.getBizUnitSeq());
             }
         }
     }
@@ -61,7 +62,7 @@ public class DeliveryService {
         log.info("[{}] Scraping start!!! ", orgCd);
         for (DeliveryLoginInfoResponseDto deliveryLoginInfoResponseDto : baedalLoginInfo) {
             if (OrgCd.cpeats == orgCd) {
-                List<CpeatsStore> storeList = cpeatsVatService.findStoreList(deliveryLoginInfoResponseDto.getCustomer().getBizNo());
+                List<CpeatsStore> storeList = cpeatsVatService.findStoreList(deliveryLoginInfoResponseDto);
                 if (storeList.size() == 0) {
                     log.warn("[{}] BizNo : {}의 스토어 아이디가 없습니다.", orgCd, deliveryLoginInfoResponseDto.getCustomer().getBizNo());
                     return;

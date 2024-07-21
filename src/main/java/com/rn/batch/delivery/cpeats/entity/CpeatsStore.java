@@ -1,5 +1,6 @@
 package com.rn.batch.delivery.cpeats.entity;
 
+import com.rn.batch.global.util.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -29,13 +30,16 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "CE_STORE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class CpeatsStore {
+public class CpeatsStore extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "BIN_NO", nullable = false, unique = true)
+    @Column(name = "BIZ_UNIT_SEQ", nullable = false, unique = true)
+    private String bizUnitSeq;
+
+    @Column(name = "BIZ_NO", nullable = false, unique = true)
     private String bizNo;
 
     @Column(name = "STORE_ID", nullable = false, unique = true)
@@ -48,7 +52,8 @@ public class CpeatsStore {
     private String repName;
 
     @Builder
-    public CpeatsStore(String bizNo, String storeId, String storeName, String repName) {
+    public CpeatsStore(String bizUnitSeq, String bizNo, String storeId, String storeName, String repName) {
+        this.bizUnitSeq = bizUnitSeq;
         this.bizNo = bizNo;
         this.storeId = storeId;
         this.storeName = storeName;

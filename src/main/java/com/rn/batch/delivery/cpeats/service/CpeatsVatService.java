@@ -8,13 +8,11 @@ import com.rn.batch.delivery.cpeats.repository.CpeatsStoreRepository;
 import com.rn.batch.delivery.cpeats.repository.CpeatsVatSalesRepository;
 import com.rn.batch.delivery.customer.dto.DeliveryLoginInfoResponseDto;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class CpeatsVatService {
@@ -46,15 +44,17 @@ public class CpeatsVatService {
     }
 
     @Transactional(readOnly = true)
-    public List<CpeatsStore> findStoreList(String bizNo) {
-        List<CpeatsStore> storeList = cpeatsStoreRepository.findByBizNo(bizNo);
+    public List<CpeatsStore> findStoreList(DeliveryLoginInfoResponseDto deliveryLoginInfoResponseDto) {
+        List<CpeatsStore> storeList = cpeatsStoreRepository.findByBizUnitSeqAndBizNo(deliveryLoginInfoResponseDto.getBizUnitSeq(),
+                deliveryLoginInfoResponseDto.getCustomer().getBizNo());
         return storeList;
     }
 
     @Transactional
-    public void saveStoreList(DeliveryP0006ResponseDto p0006) {
+    public void saveStoreList(DeliveryP0006ResponseDto p0006, String bizUnitSeq) {
         for (DeliveryP0006ResponseDto.Store store : p0006.getOutP0006().getStoreList()) {
             CpeatsStore cpeatsStore = CpeatsStore.builder()
+                    .bizUnitSeq(bizUnitSeq)
                     .bizNo(store.getBizNo())
                     .storeId(store.getStoreId())
                     .storeName(store.getStoreName())
