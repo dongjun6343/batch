@@ -6,24 +6,23 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.awt.*;
 
 /**
- CREATE TABLE `CE_STORE` (
- `ID` bigint(20) NOT NULL AUTO_INCREMENT,
- `BIZ_NO` varchar(255) NOT NULL,
- `STORE_ID` varchar(255) NOT NULL,
- `STORE_NAME` varchar(255) DEFAULT NULL,
- `REP_NAME` varchar(255) DEFAULT NULL,
- `REG_USER_ID` varchar(20) DEFAULT NULL,
- `MOD_USER_ID` varchar(20) DEFAULT NULL,
- `REG_DATE` datetime(6) DEFAULT NULL,
- `MOD_DATE` datetime(6) DEFAULT NULL,
- PRIMARY KEY (`ID`),
- UNIQUE KEY `STORE_SEQ` (`BIZ_NO`,`STORE_ID`)
- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
- todo : 부가세 시 storeId insert하도록 수정, 기존 스토어아이디 m0001 삭제.
+ * CREATE TABLE `CE_STORE` (
+ * `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+ * `BIZ_NO` varchar(255) NOT NULL,
+ * `STORE_ID` varchar(255) NOT NULL,
+ * `STORE_NAME` varchar(255) DEFAULT NULL,
+ * `REP_NAME` varchar(255) DEFAULT NULL,
+ * `REG_USER_ID` varchar(20) DEFAULT NULL,
+ * `MOD_USER_ID` varchar(20) DEFAULT NULL,
+ * `REG_DATE` datetime(6) DEFAULT NULL,
+ * `MOD_DATE` datetime(6) DEFAULT NULL,
+ * PRIMARY KEY (`ID`),
+ * UNIQUE KEY `STORE_SEQ` (`BIZ_UNIT_SEQ`,`BIZ_NO`,`STORE_ID`)
+ * ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
  */
 
 @Getter
@@ -50,6 +49,11 @@ public class CpeatsStore extends BaseEntity {
 
     @Column(name = "REP_NAME")
     private String repName;
+
+    public void change(String storeName, String repName) {
+        this.storeName = storeName;
+        this.repName = repName;
+    }
 
     @Builder
     public CpeatsStore(String bizUnitSeq, String bizNo, String storeId, String storeName, String repName) {

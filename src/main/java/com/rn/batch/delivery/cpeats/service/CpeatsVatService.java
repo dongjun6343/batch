@@ -45,22 +45,32 @@ public class CpeatsVatService {
 
     @Transactional(readOnly = true)
     public List<CpeatsStore> findStoreList(DeliveryLoginInfoResponseDto deliveryLoginInfoResponseDto) {
-        List<CpeatsStore> storeList = cpeatsStoreRepository.findByBizUnitSeqAndBizNo(deliveryLoginInfoResponseDto.getBizUnitSeq(),
+        return cpeatsStoreRepository.findByBizUnitSeqAndBizNo(
+                deliveryLoginInfoResponseDto.getBizUnitSeq(),
                 deliveryLoginInfoResponseDto.getCustomer().getBizNo());
-        return storeList;
     }
 
     @Transactional
     public void saveStoreList(DeliveryP0006ResponseDto p0006, String bizUnitSeq) {
         for (DeliveryP0006ResponseDto.Store store : p0006.getOutP0006().getStoreList()) {
-            CpeatsStore cpeatsStore = CpeatsStore.builder()
-                    .bizUnitSeq(bizUnitSeq)
-                    .bizNo(store.getBizNo())
-                    .storeId(store.getStoreId())
-                    .storeName(store.getStoreName())
-                    .repName(store.getRepName())
-                    .build();
-            cpeatsStoreRepository.save(cpeatsStore);
+
+            // 준영속 엔티티 ( CpeatsStore cs = new CpeatsStore();)
+            // jpa에서 관리를 하지 않음. => insert만 발생함
+            // 변경 감지 기능 사용, merge 사용
+            // 변경 감지는 원하는 속성만, merge는 모든 필드를 교체한다.
+            // entity를 변경할때는 변경 감지를 사용하자!
+            CpeatsStore cpeatsStore = cpeatsStoreRepository.findByBizUnitSeqAndBizNoAndStoreId(bizUnitSeq, store.getBizNo(), store.getStoreId());
+            if (cpeatsStore == null) {
+                cpeatsStoreRepository.save(CpeatsStore.builder()
+                        .bizUnitSeq(bizUnitSeq)
+                        .bizNo(store.getBizNo())
+                        .storeId(store.getStoreId())
+                        .storeName(store.getStoreName())
+                        .repName(store.getRepName())
+                        .build());
+            } else {
+                cpeatsStore.change(store.getStoreName(), store.getRepName());
+            }
         }
     }
 }

@@ -25,3 +25,8 @@ spring:
 
   main:
     allow-bean-definition-overriding: true
+
+teams:
+  webhook:
+    batch:
+      url: https://prod2-31.southeastasia.logic.azure.com/workflows/ff3f9add897345aeb6e7d7684fcf1d05/triggers/manual/paths/invoke
