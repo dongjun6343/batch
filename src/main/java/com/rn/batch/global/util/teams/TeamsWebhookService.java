@@ -13,7 +13,7 @@ public class TeamsWebhookService {
 
     public void sendTeamsMessage(String title, String message, String url) {
         TeamsWebhookRequestDto.WebhookBody webhookBody = TeamsWebhookRequestDto.WebhookBody.builder()
-                .type("TextBlock")
+                .type("TextBlock") // TextBlock 고정
                 .title(title)
                 .text(message)
                 .build();

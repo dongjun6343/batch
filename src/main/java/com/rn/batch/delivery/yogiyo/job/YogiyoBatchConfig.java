@@ -19,13 +19,14 @@ import org.springframework.transaction.PlatformTransactionManager;
 public class YogiyoBatchConfig {
 
     private final YogiyoTasklet yogiyoTasklet;
+    private final JobLoggerListener jobLoggerListener;
 
     @Bean
     public Job yogiyoJob(JobRepository jobRepository, Step jobYogiyoListenerStep) {
         return new JobBuilder("yogiyoJob", jobRepository)
                 .incrementer(new RunIdIncrementer())
                 .start(jobYogiyoListenerStep)
-                .listener(new JobLoggerListener())
+                .listener(jobLoggerListener)
                 .build();
     }
 

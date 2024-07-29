@@ -19,13 +19,14 @@ import org.springframework.transaction.PlatformTransactionManager;
 public class CpeatsBatchConfig {
 
     private final CpeatsTasklet cpeatsTasklet;
+    private final JobLoggerListener jobLoggerListener;
 
     @Bean
     public Job cpeatsJob(JobRepository jobRepository, Step jobCpeatsListenerStep) {
         return new JobBuilder("cpeatsJob", jobRepository)
                 .incrementer(new RunIdIncrementer())
                 .start(jobCpeatsListenerStep)
-                .listener(new JobLoggerListener())
+                .listener(jobLoggerListener)
                 .build();
     }
 
