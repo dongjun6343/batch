@@ -113,4 +113,10 @@ https://learn.microsoft.com/en-us/connectors/teams/?tabs=text1%2Cdotnet#adaptive
  - 대용량 처리가 아니므로 코드가 간결하고 이해하기 쉬운 Tasklet 사용
 4. webhook을 통해서 배치 오류가 발생했을때 팀즈 알림 추가 (팀즈 연동 완료) 
  - 배치 오류를 개발자가 빠르게 확인하기 위함
+
+5. spring batch flow vs step
+ - 현재는 부가세 정보만 가져오고 있어서 step을 사용하고 있지만
+   추후 부가세 뿐만 아니라, 매출,통계,수수로,리뷰 등 다양한 정보를 가져오려면
+   flow()를 사용해서 복잡한 비즈니스 로직, 조건부 실행이 가능하도록 리팩토링 해보자.
+
 ```
