@@ -6,7 +6,7 @@
 <br />
 <br />
 <br />
-<img width="1078" alt="image" src="https://github.com/user-attachments/assets/9ddbfa10-d92a-49e8-949c-159f23c1d6de">
+
 <div align="center">
 <br />
 <br />
@@ -59,7 +59,6 @@ ci/cd 구축도 필요하다!
 <br />
 
 ## 📌 nhn 클라우드 배치 서버 구축
-![image](https://github.com/user-attachments/assets/efd0e40c-24ee-43f1-b1b9-42955723a2b2)
 
 <br />
 
@@ -75,8 +74,7 @@ nohup /data/apps/rnbatch/jdk-17.0.2/bin/java -Dspring.profiles.active=prod -jar 
 ## 📌 jar 프로세스 확인
 
 `ps -ef | grep jar` 명령어 확인
-<br />
-<img width="1563" alt="image" src="https://github.com/user-attachments/assets/70509503-d1f1-4bc0-b88c-1483d7649837">
+
 
 <br />
 <br />
@@ -85,8 +83,6 @@ nohup /data/apps/rnbatch/jdk-17.0.2/bin/java -Dspring.profiles.active=prod -jar 
 ## 📌 Job 관련 로그 확인
 
 `tail -f rn-delivery-batch.log` 명령어 확인
-<br />
-![image](https://github.com/user-attachments/assets/4b5b59e8-591d-4fed-9347-e06cfab5052d)
 
 <br />
 <br />
